@@ -26,7 +26,7 @@ waydroid_dir() {
 	adb shell "[ -d '$waydroid' ]"
 	if [ $? -ne 0 ]; then
 		echo "Error: Waydroid folder not found on the phone."
-		sleep 2 # Pause for 2 seconds to show the error message
+		sleep 2
 		return 1
 	fi
 	return 0
@@ -51,20 +51,20 @@ OPTIONS=$(
 )
 
 case $OPTIONS in
-"1 - Documents") adb pull "$documents" "$backup_output" ;;
-"2 - Downloads") adb pull "$downloads" "$backup_output" ;;
-"3 - Home") adb pull "$home" "$backup_output" ;;
-"4 - App data") adb pull "$app_data" "$backup_output" ;;
-"5 - Config") adb pull "$config" "$backup_output" ;;
-"6 - SMS/Calls") adb pull "$history" "$backup_output" ;;
-"7 - Network config") adb pull "$network" "$backup_output" ;;
-"8 - Waydroid")
-	waydroid_dir
-	if [ $? -eq 0 ]; then
-		adb pull "$waydroid" "$backup_output"
-	fi
-	;;
-"9 - Exit") exit 1 ;;
+	"1 - Documents") adb pull "$documents" "$backup_output" ;;
+	"2 - Downloads") adb pull "$downloads" "$backup_output" ;;
+	"3 - Home") adb pull "$home" "$backup_output" ;;
+	"4 - App data") adb pull "$app_data" "$backup_output" ;;
+	"5 - Config") adb pull "$config" "$backup_output" ;;
+	"6 - SMS/Calls") adb pull "$history" "$backup_output" ;;
+	"7 - Network config") adb pull "$network" "$backup_output" ;;
+	"8 - Waydroid")
+		waydroid_dir
+		if [ $? -eq 0 ]; then
+		    adb pull "$waydroid" "$backup_output"
+		fi
+		;;
+	"9 - Exit") exit 1 ;;
 esac
 
 # Compress the backup files into a tar.gz archive
