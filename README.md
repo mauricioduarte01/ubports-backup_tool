@@ -1,3 +1,3 @@
 # ubports-backup_tool
 
-<img align="right" src="images/showcase.jpg" width="300" alt="Showcase">
+<img align="center" src="images/showcase.jpg" width="500" alt="Showcase">
